@@ -7,10 +7,10 @@ module.exports.login_get = (req,res)=>{
 }
 
 module.exports.signup_post = (req,res)=>{
-    res.send('Log in');
+    res.send('Sign up');
 }
 
 
 module.exports.login_post = (req,res)=>{
-    res.send('sign up');
+    res.send('Log in');
 }
