@@ -18,8 +18,17 @@
             //get the values
             const email = form.email.value;
             const password = form.password.value;
-
-            console.log(email,password);
+            
+            try{
+               const res = fetch('/signup',{
+                  method:'POST',
+                  body:JSON.stringify({email,password}),
+                  headers:{'Content-Type':'application/JSON'}
+               })
+            }
+            catch(err){
+                 console.log(err);
+            }
         })
     </script>
 </form>

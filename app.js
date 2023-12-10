@@ -23,17 +23,4 @@ mongoose.connect(url)
 app.get('/', (req, res) => res.render('home'));
 app.get('/smoothies', (req, res) => res.render('smoothies'));
 
-// cookies
-app.get('/set-cookies',(req,res)=>{
-    // res.setHeader('Set-Cookie','newUser=true');
-    res.cookie('newUser','false');
-    //the cookie below will have some maxAge and will be sent over secure network only
-    res.cookie('isEmployee','true',{maxAge:15*60*1000, secure:true,httpOnly:true});
-    res.send('You got a cookie.');
-})
 
-app.get('/read-cookies',(req,res)=>{
-    const cookies = req.cookies;
-    console.log(cookies);
-    res.json(cookies);
-})
