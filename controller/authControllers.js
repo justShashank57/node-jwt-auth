@@ -49,7 +49,7 @@ module.exports.signup_post =async (req,res)=>{
     catch(error){
          const errors = handleError(error)
         //  console.log(errors);
-         res.status(400).json(errors);
+         res.status(400).json({errors});
     }
 }
 
