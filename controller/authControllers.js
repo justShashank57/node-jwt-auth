@@ -1,4 +1,3 @@
-const {mongoose} = require('mongoose');
 const userModel = require('../models/user');
 const jwt = require('jsonwebtoken');
 
@@ -17,7 +16,7 @@ const handleError = (err)=>{
       if(err.message.includes('user validation failed')){
           Object.values(err.errors).forEach(({properties})=>{
                 errors[properties.path] = properties.message;
-          })
+          });
       }
       return errors;
 }
@@ -53,8 +52,13 @@ module.exports.signup_post =async (req,res)=>{
     }
 }
 
-
-module.exports.login_post = (req,res)=>{
-    console.log(req.body);
-    res.send('Log in');
+module.exports.login_post = async (req,res)=>{
+    const {email,password} = req.body;
+    try{
+        const user = await userModel.login(email,password);
+        res.status(200).json({user:user._id})
+    }
+    catch(err){
+        res.status(400).json({});
+    }
 }
